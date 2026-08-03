@@ -1,134 +1,131 @@
 const places = {
-    forest: {
-        quiet: {
-            title: "Тихий лес",
-            description:
-                "Место для прогулки, где можно отдохнуть от города и побыть наедине с природой.",
-            location: "Санкт-Петербург и окрестности",
-            image: "./forest.jpg"
-        },
-        people: {
-            title: "Лес для прогулки",
-            description:
-                "Красивое место для спокойной прогулки среди деревьев.",
-            location: "Санкт-Петербург и окрестности",
-            image: "./forest.jpg"
-        }
+    "Лес": {
+        title: "Тихий лес",
+        description: "Место для прогулки, где можно отдохнуть от города и побыть наедине с природой.",
+        location: "Санкт-Петербург и окрестности",
+        image: "forest.jpg"
     },
 
-    lake: {
-        quiet: {
-            title: "Тихое озеро",
-            description:
-                "Спокойное место у воды, где можно посидеть и насладиться природой.",
-            location: "Санкт-Петербург и Ленинградская область",
-            image: "./forest.jpg"
-        },
-        people: {
-            title: "Озеро для отдыха",
-            description:
-                "Подойдёт для прогулки и отдыха на природе.",
-            location: "Ленинградская область",
-            image: "./forest.jpg"
-        }
+    "Вода": {
+        title: "Тихое место у воды",
+        description: "Спокойное место у воды, где можно отдохнуть от городской суеты.",
+        location: "Санкт-Петербург и Ленинградская область",
+        image: "forest.jpg"
+    },
+
+    "Заброшенное": {
+        title: "Заброшенное место",
+        description: "Атмосферное место для тех, кому хочется чего-то необычного.",
+        location: "Ленинградская область",
+        image: "forest.jpg"
+    },
+
+    "Красивый вид": {
+        title: "Красивый вид",
+        description: "Место, откуда можно посмотреть на природу и сделать красивые фотографии.",
+        location: "Санкт-Петербург и Ленинградская область",
+        image: "forest.jpg"
+    },
+
+    "Закат": {
+        title: "Место для заката",
+        description: "Тихое место, где особенно красиво вечером.",
+        location: "Ленинградская область",
+        image: "forest.jpg"
     }
 };
 
 
 let selectedPlace = null;
-let selectedLevel = null;
 
 
-// Выбор типа места
-function selectPlace(place) {
+// Выбор места
+function choosePlace(place) {
+
     selectedPlace = place;
 
     const choice = document.getElementById("choice");
+    const peopleQuestion = document.getElementById("people-question");
+    const recommendation = document.getElementById("recommendation");
 
-    if (place === "forest") {
-        choice.textContent = "Вы выбрали: лес";
-    }
+    choice.innerHTML = `
+        <div class="selected-place">
+            <h3>Ты выбрал: ${place}</h3>
+        </div>
+    `;
 
-    if (place === "lake") {
-        choice.textContent = "Вы выбрали: озеро";
-    }
+    peopleQuestion.innerHTML = `
+        <div class="people-choice">
+            <h3>Сколько людей вокруг тебе комфортно?</h3>
 
-    if (place === "park") {
-        choice.textContent = "Вы выбрали: парк";
-    }
+            <button onclick="showRecommendation('quiet')">
+                Почти никого
+            </button>
 
-    if (place === "beach") {
-        choice.textContent = "Вы выбрали: пляж";
-    }
+            <button onclick="showRecommendation('people')">
+                Немного людей
+            </button>
+        </div>
+    `;
 
-    if (place === "mountain") {
-        choice.textContent = "Вы выбрали: горы";
-    }
+    recommendation.innerHTML = "";
 }
 
 
-// Выбор количества людей
-function selectLevel(level) {
-    selectedLevel = level;
+// Показываем рекомендацию
+function showRecommendation(level) {
 
-    const levelChoice = document.getElementById("level-choice");
+    const place = places[selectedPlace];
+
+    if (!place) {
+        return;
+    }
+
+    const recommendation =
+        document.getElementById("recommendation");
+
+    let text = "";
 
     if (level === "quiet") {
-        levelChoice.textContent = "Почти никого";
+        text = "Здесь обычно можно спокойно побыть наедине с собой.";
     }
 
     if (level === "people") {
-        levelChoice.textContent = "Немного людей";
+        text = "Здесь может быть немного людей, но место всё равно подходит для спокойного отдыха.";
     }
 
-    showPlace();
-}
-
-
-// Показываем карточку
-function showPlace() {
-
-    if (!selectedPlace || !selectedLevel) {
-        return;
-    }
-
-    const placeData =
-        places[selectedPlace]?.[selectedLevel];
-
-    if (!placeData) {
-        return;
-    }
-
-    let result = document.getElementById("place-result");
-
-    if (!result) {
-        result = document.createElement("div");
-        result.id = "place-result";
-        result.className = "place-result";
-
-        document.querySelector(".choice-level").appendChild(result);
-    }
-
-    result.innerHTML = `
-        <div class="place-card">
+    recommendation.innerHTML = `
+        <div class="recommendation-card">
 
             <img
-                src="${placeData.image}"
-                alt="${placeData.title}"
+                src="${place.image}"
+                alt="${place.title}"
                 class="place-image"
             >
 
             <div class="place-info">
 
-                <h3>${placeData.title}</h3>
-
-                <p>${placeData.description}</p>
-
-                <p class="place-location">
-                    📍 ${placeData.location}
+                <p class="small-title">
+                    РЕКОМЕНДАЦИЯ
                 </p>
 
-                <button onclick="alert('Подробнее о месте скоро появится!')">
+                <h2>
+                    ${place.title}
+                </h2>
+
+                <p>
+                    ${place.description}
+                </p>
+
+                <p>
+                    📍 ${place.location}
+                </p>
+
+                <p>
+                    ${text}
+                </p>
+
+                <button onclick="alert('Подробная информация о месте появится здесь.')">
                     Посмотреть место
                 </button>
 
@@ -137,3 +134,18 @@ function showPlace() {
         </div>
     `;
 }
+
+
+// Кнопка «Найти место» на главном экране
+function scrollToPlaces() {
+
+    const placesSection =
+        document.getElementById("places");
+
+    placesSection.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+     
+   
+                
