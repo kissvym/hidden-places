@@ -207,3 +207,12 @@ header a:hover {
     display: block;
     border-radius: 15px;
 }
+   .place-image {
+    width: 100% !important;
+    max-width: 450px !important;
+    height: 250px !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 15px !important;
+} 
