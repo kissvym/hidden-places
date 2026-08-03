@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Скрытые места</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="header">
+
+        <div class="logo">
+            СКРЫТЫЕ МЕСТА
+        </div>
+
+        <nav>
+            <a href="#places">Места</a>
+            <a href="#places">Карта</a>
+            <a href="#about">О проекте</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Главный экран -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                ТВОЁ МЕСТО
+            </p>
+
+            <h1>
+                Скрытые места
+            </h1>
+
+            <p class="hero-text">
+                Красивые места, где можно забыть о толпе,
+                шуме и городской суете.
+            </p>
+
+            <button
+                class="hero-button"
+                onclick="scrollToPlaces()">
+                Найти место
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Выбор места -->
+    <section
+        class="search-section"
+        id="places">
+
+        <div class="section-title">
+
+            <p class="small-title">
+                ТВОЁ МЕСТО
+            </p>
+
+            <h2>
+                Куда отправимся?
+            </h2>
+
+            <p>
+                Выбери, что тебе хочется увидеть —
+                мы найдём место под твой запрос.
+            </p>
+
+        </div>
+
+
+        <!-- Кнопки мест -->
+
+        <div class="filters">
+
+            <button onclick="choosePlace('Лес')">
+                🌲 Лес
+            </button>
+
+            <button onclick="choosePlace('Вода')">
+                🌊 Вода
+            </button>
+
+            <button onclick="choosePlace('Заброшенное')">
+                🏚️ Заброшенное
+            </button>
+
+            <button onclick="choosePlace('Красивый вид')">
+                🏞️ Красивый вид
+            </button>
+
+            <button onclick="choosePlace('Закат')">
+                🌅 Закат
+            </button>
+
+        </div>
+
+
+        <!-- Здесь появляется выбранное место -->
+
+        <div id="choice"></div>
+
+        <!-- Здесь появится выбор людей -->
+
+        <div id="people-question"></div>
+
+        <!-- Здесь появится рекомендация -->
+
+        <div id="recommendation"></div>
+
+    </section>
+
+
+    <!-- О проекте -->
+
+    <section
+        class="about"
+        id="about">
+
+        <p class="small-title">
+            О ПРОЕКТЕ
+        </p>
+
+        <h2>
+            Места, о которых знают не все
+        </h2>
+
+        <p>
+            Этот проект помогает найти спокойные и красивые
+            места в Санкт-Петербурге и Ленинградской области.
+            Выбери настроение — и получи подходящую рекомендацию.
+        </p>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 Скрытые места
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f1e9;
+    color: #283532;
+}
+
+.search-section {
+    padding: 120px 10%;
+    min-height: 100vh;
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.small-title {
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: #7b827e;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.section-title p:last-child {
+    max-width: 700px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #596463;
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.filters button {
+    border: 1px solid #ddd8cc;
+    background: #fffdf8;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #596463;
+    transition: 0.2s;
+}
+
+.filters button:hover {
+    transform: translateY(-2px);
+    background: #eee9de;
+}
+
+#choice {
+    margin-top: 25px;
+    font-size: 20px;
+    color: #596463;
+}
+
+.choice-level {
+    margin-top: 25px;
+}
+
+.choice-level h3 {
+    font-size: 20px;
+}
+
+.level-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.level-buttons button {
+    border: 1px solid #ddd8cc;
+    background: #fffdf8;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#level-choice {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.place-result {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .search-section {
+        padding: 70px 6%;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    .filters button,
+    .level-buttons button {
+        width: 100%;
+    }
+}
+/* ===== ВЕРХНЯЯ ЧАСТЬ САЙТА ===== */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 8%;
+    background: #283532;
+    color: white;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+header a:hover {
+    opacity: 0.7;
+}
+
+/* Главный экран */
+
+.hero {
+    min-height: 600px;
+    padding: 120px 10%;
+    display: flex;
+    align-items: center;
+    background-image:
+        linear-gradient(rgba(20, 35, 30, 0.45), rgba(20, 35, 30, 0.45)),
+        url("images/forest.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin: 20px 0;
+}
+
+.hero p {
+    max-width: 650px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.hero button {
+    margin-top: 25px;
+    padding: 16px 28px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #283532;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    transform: translateY(-2px);
+}
+
+/* Мобильная версия */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    header a {
+        margin: 0 8px;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 80px 7%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+}
