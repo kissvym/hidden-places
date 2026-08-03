@@ -1,204 +1,139 @@
-let selectedPlace = "";
+const places = {
+    forest: {
+        quiet: {
+            title: "Тихий лес",
+            description:
+                "Место для прогулки, где можно отдохнуть от города и побыть наедине с природой.",
+            location: "Санкт-Петербург и окрестности",
+            image: "forest.jpg"
+        },
+        people: {
+            title: "Лес для прогулки",
+            description:
+                "Красивое место для спокойной прогулки среди деревьев.",
+            location: "Санкт-Петербург и окрестности",
+            image: "forest.jpg"
+        }
+    },
 
-let selectedPeople = "";
+    lake: {
+        quiet: {
+            title: "Тихое озеро",
+            description:
+                "Спокойное место у воды, где можно посидеть и насладиться природой.",
+            location: "Санкт-Петербург и Ленинградская область",
+            image: "forest.jpg"
+        },
+        people: {
+            title: "Озеро для отдыха",
+            description:
+                "Подойдёт для прогулки и отдыха на природе.",
+            location: "Ленинградская область",
+            image: "forest.jpg"
+        }
+    }
+};
 
 
-/* =========================
-   КНОПКА "НАЙТИ МЕСТО"
-========================= */
-
-function scrollToPlaces() {
-
-    document
-        .getElementById("places")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
+let selectedPlace = null;
+let selectedLevel = null;
 
 
-/* =========================
-   ВЫБОР МЕСТА
-========================= */
-
-function choosePlace(place) {
-
+// Выбор типа места
+function selectPlace(place) {
     selectedPlace = place;
 
-    document.getElementById("choice").innerHTML = `
-        <strong>Ты выбрал(а):</strong> ${place}
-    `;
+    const choice = document.getElementById("choice");
 
+    if (place === "forest") {
+        choice.textContent = "Вы выбрали: лес";
+    }
 
-    selectedPeople = "";
+    if (place === "lake") {
+        choice.textContent = "Вы выбрали: озеро";
+    }
 
-    document.getElementById("recommendation").innerHTML = "";
+    if (place === "park") {
+        choice.textContent = "Вы выбрали: парк";
+    }
 
-    document.getElementById("people-question").innerHTML = `
+    if (place === "beach") {
+        choice.textContent = "Вы выбрали: пляж";
+    }
 
-        <h3>
-            Насколько безлюдное место?
-        </h3>
-
-        <div class="filters">
-
-            <button onclick="choosePeople('Очень мало')">
-                🟢 Почти никого
-            </button>
-
-            <button onclick="choosePeople('Иногда встречаются люди')">
-                🟡 Иногда встречаются люди
-            </button>
-
-            <button onclick="choosePeople('Людей бывает больше')">
-                🔴 Людей бывает больше
-            </button>
-
-        </div>
-
-        <p id="people-choice"></p>
-
-    `;
-
-
-    document
-        .getElementById("people-question")
-        .scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
+    if (place === "mountain") {
+        choice.textContent = "Вы выбрали: горы";
+    }
 }
 
 
-/* =========================
-   ВЫБОР КОЛИЧЕСТВА ЛЮДЕЙ
-========================= */
+// Выбор количества людей
+function selectLevel(level) {
+    selectedLevel = level;
 
-function choosePeople(people) {
+    const levelChoice = document.getElementById("level-choice");
 
-    selectedPeople = people;
+    if (level === "quiet") {
+        levelChoice.textContent = "Почти никого";
+    }
 
-    document.getElementById("people-choice").textContent =
-        "Выбрано: " + people;
+    if (level === "people") {
+        levelChoice.textContent = "Немного людей";
+    }
 
-    showRecommendation();
-
+    showPlace();
 }
 
 
-/* =========================
-   РЕКОМЕНДАЦИЯ
-========================= */
+// Показываем карточку
+function showPlace() {
 
-function showRecommendation() {
-
-    let title = "";
-
-    let description = "";
-
-    let location = "📍 Санкт-Петербург и область";
-
-
-    /* ЛЕС */
-
-    if (selectedPlace === "Лес") {
-
-        title = "🌲 Тихий лес у озера";
-
-        description =
-            "Тихое место среди деревьев, где можно погулять, посидеть у воды и отдохнуть от города.";
-
+    if (!selectedPlace || !selectedLevel) {
+        return;
     }
 
+    const placeData =
+        places[selectedPlace]?.[selectedLevel];
 
-    /* ВОДА */
-
-    else if (selectedPlace === "Вода") {
-
-        title = "🌊 Тихий берег";
-
-        description =
-            "Спокойное место у воды, где можно послушать шум волн, прогуляться вдоль берега и побыть наедине с природой.";
-
+    if (!placeData) {
+        return;
     }
 
+    let result = document.getElementById("place-result");
 
-    /* ЗАБРОШЕННОЕ */
+    if (!result) {
+        result = document.createElement("div");
+        result.id = "place-result";
+        result.className = "place-result";
 
-    else if (selectedPlace === "Заброшенное") {
-
-        title = "🏚️ Старое заброшенное место";
-
-        description =
-            "Атмосферное место с заброшенными зданиями и следами прошлого. Подходит для прогулки и необычных фотографий.";
-
+        document.querySelector(".choice-level").appendChild(result);
     }
 
+    result.innerHTML = `
+        <div class="place-card">
 
-    /* КРАСИВЫЙ ВИД */
+            <img
+                src="${placeData.image}"
+                alt="${placeData.title}"
+                class="place-image"
+            >
 
-    else if (selectedPlace === "Красивый вид") {
+            <div class="place-info">
 
-        title = "🏞️ Место с красивым видом";
+                <h3>${placeData.title}</h3>
 
-        description =
-            "Точка с красивым природным пейзажем, где можно спокойно посидеть, сделать фотографии и насладиться видом.";
+                <p>${placeData.description}</p>
 
-    }
+                <p class="place-location">
+                    📍 ${placeData.location}
+                </p>
 
+                <button onclick="alert('Подробнее о месте скоро появится!')">
+                    Посмотреть место
+                </button>
 
-    /* ЗАКАТ */
-
-    else if (selectedPlace === "Закат") {
-
-        title = "🌅 Место для красивого заката";
-
-        description =
-            "Открытое место с хорошим видом на горизонт. Особенно красиво вечером, когда солнце начинает садиться.";
-
-    }
-
-
-    document.getElementById("recommendation").innerHTML = `
-
-        <div class="recommendation-card">
-
-            <p class="small-title">
-                РЕКОМЕНДАЦИЯ ДЛЯ ТЕБЯ
-            </p>
-
-            <h2>
-                ${title}
-            </h2>
-
-            <p>
-                ${location}
-            </p>
-
-            <p>
-                ${description}
-            </p>
-
-            <p>
-                👥 ${selectedPeople}
-            </p>
-
-            <p>
-                ✨ Подходит для спокойного отдыха
-            </p>
+            </div>
 
         </div>
-
     `;
-
-
-    document
-        .getElementById("recommendation")
-        .scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
 }
