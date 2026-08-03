@@ -199,4 +199,11 @@ header a:hover {
     .hero h1 {
         font-size: 42px;
     }
+.place-image {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
 }
