@@ -219,9 +219,18 @@ header a:hover {
     @media (max-width: 600px) {
     .place-image {
         width: 90% !important;
-        max-width: 250px !important;
-        height: 140px !important;
+        max-width: 300px !important;
+        height: 170px !important;
         object-fit: cover !important;
         margin: 0 auto !important;
+    }
+}
+@media (min-width: 601px) {
+    .recommendation-card img[src*="view.jpg"] {
+        max-width: 450px !important;
+        height: 250px !important;
+        object-fit: cover !important;
+        margin: 0 auto !important;
+        display: block !important;
     }
 }
