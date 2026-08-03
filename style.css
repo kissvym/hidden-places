@@ -216,3 +216,12 @@ header a:hover {
     margin: 0 auto !important;
     border-radius: 15px !important;
 } 
+    @media (max-width: 600px) {
+    .place-image {
+        width: 90% !important;
+        max-width: 250px !important;
+        height: 140px !important;
+        object-fit: cover !important;
+        margin: 0 auto !important;
+    }
+}
