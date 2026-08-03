@@ -5,14 +5,14 @@ const places = {
             description:
                 "Место для прогулки, где можно отдохнуть от города и побыть наедине с природой.",
             location: "Санкт-Петербург и окрестности",
-            image: "forest.jpg"
+            image: "./forest.jpg"
         },
         people: {
             title: "Лес для прогулки",
             description:
                 "Красивое место для спокойной прогулки среди деревьев.",
             location: "Санкт-Петербург и окрестности",
-            image: "forest.jpg"
+            image: "./forest.jpg"
         }
     },
 
@@ -22,14 +22,14 @@ const places = {
             description:
                 "Спокойное место у воды, где можно посидеть и насладиться природой.",
             location: "Санкт-Петербург и Ленинградская область",
-            image: "forest.jpg"
+            image: "./forest.jpg"
         },
         people: {
             title: "Озеро для отдыха",
             description:
                 "Подойдёт для прогулки и отдыха на природе.",
             location: "Ленинградская область",
-            image: "forest.jpg"
+            image: "./forest.jpg"
         }
     }
 };
